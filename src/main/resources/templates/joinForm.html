@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입페이지</title>
+</head>
+<body>
+    <h1>회원가입페이지</h1>
+    </hr>
+    <form id="frm">
+        <input type="text" name="username" id="UserName" placeholder="UserName">
+        <input type="password" name="password" id="Password" placeholder="Password">
+        <input type=email name="email" id="email" placeholder="email">
+        <button id="join">회원가입</button>
+    </form>
+    <script>
+        const join = document.getElementById("join");
+        join.addEventListener("click",(e)=> {
+            const frm = document.getElementById("frm");
+            frm.action="join";
+            frm.method="POST"
+            frm.submit();
+        });
+    </script>
+</body>
+</html>

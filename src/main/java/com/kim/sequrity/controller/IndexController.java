@@ -4,6 +4,8 @@ import com.kim.sequrity.Dto.JoinRequestDto;
 import com.kim.sequrity.domain.User;
 import com.kim.sequrity.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,7 @@ public class IndexController {
         return "manager";
     }
     @GetMapping("/user")
-    public String user(){
+    public @ResponseBody String user(){
         return "user";
     }
 
@@ -58,7 +60,17 @@ public class IndexController {
 
     //. 단어선택 : ctrl + g,
     //ctrl + w. (누를때마다 같은 파일에 있는 같은 단어 선택됨).
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/info")
+    public @ResponseBody String info(){
+        return "개인정보";
+    }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')") //403호출
+    @GetMapping("/data")
+    public @ResponseBody String data(){
+        return "데이타정보";
+    }
 
 
 

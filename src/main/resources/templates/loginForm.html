@@ -7,11 +7,21 @@
 <body>
     <h1>로그인 페이지</h1>
     </hr>
-    <form>
-        <input type="text" name="userName" id="UserName">
+    <form id="frm">
+        <input type="text" name="username" id="UserName">
         <input type="password" name="password" id="Password">
-        <button>로그인</button>
+        <button id="login">로그인</button>
     </form>
     <a href="/joinForm">회원가입을 아직 안함?</a>
+    <a href="/oauth2/authorization/google">구글로그인</a>
+    <script>
+        const login = document.getElementById("login");
+        login.addEventListener("click",(e)=> {
+            const frm = document.getElementById("frm");
+            frm.action="/login";
+            frm.method="POST"
+            frm.submit();
+        });
+    </script>
 </body>
 </html>
